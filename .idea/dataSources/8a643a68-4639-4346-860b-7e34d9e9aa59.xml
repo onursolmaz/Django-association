@@ -379,7 +379,7 @@
     <table id="177" parent="2" name="django_content_type"/>
     <table id="178" parent="2" name="django_migrations"/>
     <table id="179" parent="2" name="django_session"/>
-    <table id="180" parent="2" name="new_category"/>
+    <table id="180" parent="2" name="news_category"/>
     <table id="181" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
@@ -1822,11 +1822,11 @@ model</ColNames>
       <Position>10</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <index id="596" parent="180" name="new_category_slug_e0a4990b">
+    <index id="596" parent="180" name="news_category_slug_8bf24efd">
       <ColNames>slug</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="597" parent="180" name="new_category_parent_id_ec6d5b83">
+    <index id="597" parent="180" name="news_category_parent_id_a28ec99b">
       <ColNames>parent_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
@@ -1836,7 +1836,7 @@ model</ColNames>
     </key>
     <foreign-key id="599" parent="180">
       <ColNames>parent_id</ColNames>
-      <RefTableName>new_category</RefTableName>
+      <RefTableName>news_category</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
