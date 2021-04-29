@@ -1,7 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from news.models import Category, News
+from news.models import Category, News, Images
+
+
+class NewsImageInline(admin.TabularInline):
+    model = Images
+    extra = 5
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -10,9 +15,16 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ["title", "category", "status"]
+    list_display = ["title", "category", "status", "image", "image_tag"]
     list_filter = ["status"]
+    inlines = [NewsImageInline]
+    readonly_fields = ("image_tag",)
+
+
+class ImagesAdmin(admin.ModelAdmin):
+    list_display = ["title", "news", "image"]
 
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(News, NewsAdmin)
+admin.site.register(Images, ImagesAdmin)
