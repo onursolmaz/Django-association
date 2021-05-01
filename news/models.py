@@ -1,3 +1,4 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 # Create your models here.
@@ -35,7 +36,7 @@ class News(models.Model):
     keywords = models.CharField(max_length=70)
     image = models.ImageField(blank=True, upload_to="images/")
     status = models.CharField(max_length=10, choices=STATUS)
-    detail = models.TextField()
+    detail = RichTextUploadingField()
     create_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now=True)
 

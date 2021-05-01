@@ -15,7 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ["title", "category", "status", "image", "image_tag"]
+    list_display = ["title", "category", "status", "image_tag"]
     list_filter = ["status"]
     inlines = [NewsImageInline]
     readonly_fields = ("image_tag",)
