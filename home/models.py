@@ -23,3 +23,22 @@ class Setting(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactForm(models.Model):
+    STATUS = (
+        ("New", "New"),
+        ("Read", "Read"),
+    )
+
+    name = models.CharField(max_length=75, blank=True)
+    subject = models.CharField(blank=True, max_length=30)
+    ip = models.CharField(blank=True, max_length=20)
+    email = models.CharField(blank=True, max_length=30)
+    status = models.CharField(max_length=10, choices=STATUS, default="New")
+    message = models.CharField(max_length=255)
+    create_at = models.DateField(auto_now_add=True)
+    update_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name
