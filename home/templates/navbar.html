@@ -14,9 +14,9 @@
                 <ul class="dropdown-menu">
                     {% load mptt_tags %}
                     {% recursetree category %}
-                        <li><a class="{% if not note.is_leaf_node %}dropdown-toggle{% endif %} dropdown-item" href="/category/{{ node.title }}">
+                        <li><a class="dropdown-item {% if not node.is_leaf_node %}dropdown-toggle{% endif %} " href="/category/{{ node.title }}">
                             {{ node.title }}</a>
-                            {% if not note.is_leaf_node %}
+                            {% if not node.is_leaf_node %}
                                 <ul class="submenu dropdown-menu">
                                    {{ children }}
                                 </ul>
