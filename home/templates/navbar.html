@@ -12,51 +12,17 @@
             <li class="nav-item  active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> Kategoriler </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item  dropdown-toggle  " href="http://127.0.0.1:8000/categoryposts/1">
-                        Teknoloji</a>
-                        <ul class="submenu dropdown-menu">
-                            <li><a class="dropdown-item dropdown-toggle" href="http://127.0.0.1:8000/categoryposts/6">Yazılım</a>
+                    {% load mptt_tags %}
+                    {% recursetree category %}
+                        <li><a class="{% if not note.is_leaf_node %}dropdown-toggle{% endif %} dropdown-item" href="/category/{{ node.title }}">
+                            {{ node.title }}</a>
+                            {% if not note.is_leaf_node %}
                                 <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item dropdown-toggle"
-                                           href="http://127.0.0.1:8000/categoryposts/7">PHP</a>
-                                        <ul class="submenu dropdown-menu">
-                                            <li><a class="dropdown-item" href="http://127.0.0.1:8000/categoryposts/8">Laravel</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                   {{ children }}
                                 </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="dropdown-item  dropdown-toggle  " href="http://127.0.0.1:8000/categoryposts/2">
-                        Siyaset</a>
-                        <ul class="submenu dropdown-menu">
-                            <li><a class="dropdown-item" href="http://127.0.0.1:8000/categoryposts/12">X parti</a></li>
-                            <li><a class="dropdown-item" href="http://127.0.0.1:8000/categoryposts/15">Y Parti</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="dropdown-item  " href="http://127.0.0.1:8000/categoryposts/3"> Sağlık</a>
-                    </li>
-                    <li><a class="dropdown-item  dropdown-toggle  " href="http://127.0.0.1:8000/categoryposts/4">
-                        Haber</a>
-                        <ul class="submenu dropdown-menu">
-                            <li><a class="dropdown-item" href="http://127.0.0.1:8000/categoryposts/9">Magazin</a></li>
-                            <li><a class="dropdown-item dropdown-toggle" href="http://127.0.0.1:8000/categoryposts/10">Spor</a>
-                                <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/categoryposts/11">Galatasaray</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="dropdown-item  dropdown-toggle  " href="http://127.0.0.1:8000/categoryposts/5">
-                        Araba</a>
-                        <ul class="submenu dropdown-menu">
-                            <li><a class="dropdown-item" href="http://127.0.0.1:8000/categoryposts/13">TOGG</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="dropdown-item  " href="http://127.0.0.1:8000/categoryposts/14"> Sanat</a>
-                    </li>
+                            {% endif %}
+                        </li>
+                    {% endrecursetree %}
                 </ul>
             </li>
 

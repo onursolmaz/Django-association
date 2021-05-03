@@ -75,10 +75,18 @@
                 <div class="contact-image">
                     <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
                 </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <form method="post" action="">
                     <h3>Drop Us a Message</h3>
                     <div class="row">
                         <div class="col-md-6">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder="Your Name *"
                                        autocomplete="off"
@@ -99,9 +107,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea name="message" class="form-control" placeholder="Your Message *"
-                                          autocomplete="off"
-                                          style="width: 100%; height: 150px;"></textarea>
+                                    <textarea name="message" class="form-control" placeholder="Your Message *"
+                                              autocomplete="off"
+                                              style="width: 100%; height: 150px;"></textarea>
                             </div>
                         </div>
                     </div>

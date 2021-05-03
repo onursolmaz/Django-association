@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'news.apps.NewConfig',
     'ckeditor',
     'ckeditor_uploader',
+    "mptt"
 ]
 
 MIDDLEWARE = [
