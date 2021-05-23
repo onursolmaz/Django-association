@@ -20,7 +20,7 @@ def aboutus(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     context = {"setting": setting,"category": category}
-    return render(request, "aboutus.html", context)
+    return render(request, "news.html", context)
 
 
 def contact(request):
@@ -42,3 +42,11 @@ def contact(request):
     # form = ContactForm()
     context = {"setting": setting,"category": category}
     return render(request, "contact.html", context)
+
+
+def category_news(request,id):
+    category = Category.objects.all()
+    categoryData=Category.objects.get(pk=id)
+    news=News.objects.filter(category_id=id)
+    context = {"news": news,"category": category,"categoryData":categoryData}
+    return render(request, "news.html", context)

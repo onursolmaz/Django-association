@@ -11,7 +11,7 @@
 
             {% for rs in sliderData %}
                 <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %} ">
-                    <a href="">
+                    <a href="/news/{{ rs.id }}">
                         <img src="{{ rs.image.url }}" class="d-block w-100" height="550px">
                         <div class="carousel-caption d-none d-md-block">
                             <h2 style="text-transform: uppercase;"><strong>{{ rs.title }}</strong></h2>
