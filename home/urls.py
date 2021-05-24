@@ -7,4 +7,5 @@ urlpatterns = [
     path("aboutus", views.aboutus, name="abouts"),
     path("contact", views.contact, name="contact"),
     path("category/<int:id>", views.category_news, name="category_news"),
+    # path("news/<int:id>", views.news, name="news"),
 ]

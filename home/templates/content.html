@@ -1,169 +1,27 @@
 <main>
     <div class="container mt-3">
         <h1 class="display-4 text-center mb-4">
-            LATEST BLOGS
+            LATEST NEWS
             <hr>
         </h1>
         <div class="row">
             <div class="col-md-8">
-
-                <div class="card mb-4">
-                    <img src="/storage/images/HZcf3bmh8xXwe2fKJaaQHpz31lBP7d8utEvD8nFF.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Yerli Otomobil TOGG</h3>
-                        <p class="card-text">Yerli Otomobil ne zaman yollarda?...</p>
-                        <a href="http://127.0.0.1:8000/post/28/2" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 0</div>
+                {% for rs in news %}
+                    <div class="card mb-4">
+                        <img src="{{ rs.image.url }}"
+                             class="card-img-top img-thumbnail" width="600px">
+                        <div class="card-body">
+                            <h3 class="card-title text-uppercase">{{ rs.title }}</h3>
+                            <p class="card-text">{{ rs.keywords }}</p>
+                            <a href="/news/{{ rs.id }}" type="button" class="btn btn-primary">Read
+                                More</a>
+                            <div class="d-inline float-right"><i class="far fa-comments"></i> 0</div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <i class="far fa-calendar-alt"></i> {{ rs.create_at }}
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-02-08 17:10:54
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/lkFKcZCnkei8mdAbHRwC7774x7KNAXoRiPng3UyN.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Pandemide insanlar sanata merak sardı</h3>
-                        <p class="card-text">sanat,müzik...</p>
-                        <a href="http://127.0.0.1:8000/post/26/2" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 1</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-02-06 01:13:25
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/wXmy3d44AecARGbB8GVlAjl0QlT9OKZsVFY6ULAT.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Logitech mk470</h3>
-                        <p class="card-text">logitech keyboard mouse set...</p>
-                        <a href="http://127.0.0.1:8000/post/21/2" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 2</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-02-01 16:48:37
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/eWeVNTMaRIH7iRkkkH9ZbpmNXfgd2dqB0Ud9kGPs.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Acun Ilıcalı dominik</h3>
-                        <p class="card-text">acun ılıcalı dominik...</p>
-                        <a href="http://127.0.0.1:8000/post/19/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 1</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-31 19:58:56
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/fhbsOHhzWztPkQAEyg9hRrgzPflprsU0ifFuJhmq.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Şenol Güneş: EURO 2020’de iz bırakacağız!</h3>
-                        <p class="card-text">Şenol Güneş: EURO 2020’de iz bırakacağız...</p>
-                        <a href="http://127.0.0.1:8000/post/18/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 1</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-31 19:29:44
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/xBEUtGnj9OBTrgymfKWlNSaYCB5cyhpi5H3Ysjw0.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Avrupa&#039;nın en büyüğü</h3>
-                        <p class="card-text">Avrupa'nın en büyüğü...</p>
-                        <a href="http://127.0.0.1:8000/post/17/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 0</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-31 19:27:55
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/ah9KmTxa3JXk3iIf7MtclyzHKRuPhteykKtbnJwO.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Avrupa&#039;nın en büyük kitap evi</h3>
-                        <p class="card-text">Bkmkitap.com 2020 yılında alışveriş yapan kitapseverlerin...</p>
-                        <a href="http://127.0.0.1:8000/post/16/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 5</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-30 01:20:07
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/n45SEQeC6NT3HTEgVJMOhxQ9NYnxIO6Ys3tJFIy3.png"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Asp .NET CORE NEDİR ?</h3>
-                        <p class="card-text">Microsof tarafından geliştirilen bir uygulamadır. Web sitesi yapma...</p>
-                        <a href="http://127.0.0.1:8000/post/15/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 1</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-30 01:19:50
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/Q5gXc1JwMMaYKFyUI6L2c4zuGQZ382oGJJ5Fs8Lh.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">DEVA Partisi</h3>
-                        <p class="card-text">DEVA Partisi kurucusu, Genel Başkan Ali Babacan...</p>
-                        <a href="http://127.0.0.1:8000/post/14/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 0</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-30 01:19:36
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/tswjVgyXsKvildxOXselbgdHe19A4OaKwHfW6ipW.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Biontech aşısı ne kadar başarılı ?</h3>
-                        <p class="card-text">Almanya’nın Mainz kentindeki biyoteknoloji şirketi BioNTech'in kurucu
-                            ortağı olan Uğur Şahin...</p>
-                        <a href="http://127.0.0.1:8000/post/13/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 1</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-30 01:19:17
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/OIeKEi4776Hq5tGtptV5KYoFapYUmme0LoyJHyuH.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">Korona ölüm oranları</h3>
-                        <p class="card-text">saglık korona, aşı, yerli aşı, vaka...</p>
-                        <a href="http://127.0.0.1:8000/post/3/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 0</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-26 22:50:57
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img src="/storage/images/7WIbFjhNRMuAjZ4TCHiBKg4l3CZUb7JeMSJBFwXr.jpg"
-                         class="card-img-top img-thumbnail" width="600px">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">YAZILIM DÜNYASI</h3>
-                        <p class="card-text">laravel, migrationi, framework, codenighter...</p>
-                        <a href="http://127.0.0.1:8000/post/2/1" type="button" class="btn btn-primary">Read More</a>
-                        <div class="d-inline float-right"><i class="far fa-comments"></i> 0</div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="far fa-calendar-alt"></i> 2021-01-26 22:38:42
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             {% include "sidebar.html" %}

@@ -12,14 +12,15 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderData = News.objects.all()[:4]
     category = Category.objects.all()
-    context = {"setting": setting, "sliderData": sliderData, "category": category}
+    news = News.objects.all()
+    context = {"setting": setting, "sliderData": sliderData, "category": category, "news": news}
     return render(request, "index.html", context)
 
 
 def aboutus(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {"setting": setting,"category": category}
+    context = {"setting": setting, "category": category}
     return render(request, "news.html", context)
 
 
@@ -40,13 +41,21 @@ def contact(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     # form = ContactForm()
-    context = {"setting": setting,"category": category}
+    context = {"setting": setting, "category": category}
     return render(request, "contact.html", context)
 
 
-def category_news(request,id):
+def category_news(request, id):
     category = Category.objects.all()
-    categoryData=Category.objects.get(pk=id)
-    news=News.objects.filter(category_id=id)
-    context = {"news": news,"category": category,"categoryData":categoryData}
+    categoryData = Category.objects.get(pk=id)
+    news = News.objects.filter(category_id=id)
+    context = {"news": news, "category": category, "categoryData": categoryData}
     return render(request, "news.html", context)
+
+
+def news(request, id):
+    category = Category.objects.all()
+    categoryData = Category.objects.get(pk=id)
+    news = News.objects.filter(id=id)
+    context = {"news": news, "category": category, "categoryData": categoryData}
+    return render(request, "content.html", context)
