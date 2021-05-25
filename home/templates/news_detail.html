@@ -96,26 +96,31 @@
                     </div>
 
                     <!-- Single Comment -->
-                {% for rs in comments %}
-                    <div class="media mb-4 ">
-                        <img class="d-flex mr-3 rounded-circle" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" height="45px"
-                             width="45px">
-                        <div class="media-body">
-                            <h5 class="mt-0">{{ rs.user }}</h5>
-                            {{ rs.comment }}
-                        </div>
-                        <span class="text-muted" style="font-size: 15px">
+                    {% for rs in comments %}
+                        <div class="media mb-4 ">
+                            <img class="d-flex mr-3 rounded-circle"
+                                 src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
+                                 height="45px"
+                                 width="45px">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ rs.user }}</h5>
+                                {{ rs.comment }}
+                            </div>
+                            <span class="text-muted" style="font-size: 15px">
                            <i class="far fa-clock"></i> {{ rs.create_at }}
                         </span>
-                    </div>
-                {% endfor %}
+                        </div>
+                    {% endfor %}
                     <hr>
                     <div class="mb-5">
 
                     </div>
                 </div>
 
+                {% include "sidebar.html" %}
             </div>
+
+
         </div>
 
 
