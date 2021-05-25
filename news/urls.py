@@ -6,5 +6,6 @@ urlpatterns = [
 
     path("", views.index, name="index"),
     path("<int:id>", views.news, name="news"),
+    path("addcomment/<int:id>", views.addcomment, name="addcomment")
 
 ]
