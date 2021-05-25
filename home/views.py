@@ -51,11 +51,3 @@ def category_news(request, id):
     news = News.objects.filter(category_id=id)
     context = {"news": news, "category": category, "categoryData": categoryData}
     return render(request, "news.html", context)
-
-
-def news(request, id):
-    category = Category.objects.all()
-    categoryData = Category.objects.get(pk=id)
-    news = News.objects.filter(id=id)
-    context = {"news": news, "category": category, "categoryData": categoryData}
-    return render(request, "content.html", context)
