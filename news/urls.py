@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 urlpatterns = [
 
     path("", views.index, name="index"),
-    path("<int:id>", views.news, name="news"),
+    path("<int:id>/<slug:slug>", views.news, name="news"),
     path("addcomment/<int:id>", views.addcomment, name="addcomment")
 
 ]

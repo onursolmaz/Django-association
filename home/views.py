@@ -48,7 +48,7 @@ def contact(request):
     return render(request, "contact.html", context)
 
 
-def category_news(request, id):
+def category_news(request, id,slug):
     category = Category.objects.all()
     categoryData = Category.objects.get(pk=id)
     news = News.objects.filter(category_id=id)

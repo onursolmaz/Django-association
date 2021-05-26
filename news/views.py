@@ -12,7 +12,7 @@ def index(request):
     return HttpResponse("News page")
 
 
-def news(request, id):
+def news(request, id,slug):
     category = Category.objects.all()
     news = News.objects.get(pk=id)
     images = Images.objects.filter(news_id=id)
@@ -23,6 +23,7 @@ def news(request, id):
 
 @login_required(login_url="/login")
 def addcomment(request, id):
+
     url = request.META.get("HTTP_REFERER")
     if request.method == "POST":
         form = CommentForm(request.POST)

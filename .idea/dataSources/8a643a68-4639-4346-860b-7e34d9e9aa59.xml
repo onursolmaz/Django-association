@@ -1953,48 +1953,50 @@ model</ColNames>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="626" parent="182" name="slug">
+    <column id="626" parent="182" name="create_at">
       <Position>7</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="627" parent="182" name="create_at">
+    <column id="627" parent="182" name="update_at">
       <Position>8</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="628" parent="182" name="update_at">
+    <column id="628" parent="182" name="level">
       <Position>9</Position>
-      <DataType>date|0s</DataType>
+      <DataType>integer unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="629" parent="182" name="level">
+    <column id="629" parent="182" name="lft">
       <Position>10</Position>
       <DataType>integer unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="630" parent="182" name="lft">
+    <column id="630" parent="182" name="rght">
       <Position>11</Position>
       <DataType>integer unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="631" parent="182" name="rght">
+    <column id="631" parent="182" name="tree_id">
       <Position>12</Position>
       <DataType>integer unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="632" parent="182" name="tree_id">
+    <column id="632" parent="182" name="slug">
       <Position>13</Position>
-      <DataType>integer unsigned|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="633" parent="182" name="parent_id">
       <Position>14</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <index id="634" parent="182" name="news_category_slug_8bf24efd">
+    <index id="634" parent="182" name="sqlite_autoindex_news_category_1">
+      <NameSurrogate>1</NameSurrogate>
       <ColNames>slug</ColNames>
       <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
     </index>
     <index id="635" parent="182" name="news_category_tree_id_114baa2f">
       <ColNames>tree_id</ColNames>
@@ -2008,223 +2010,237 @@ model</ColNames>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="638" parent="182">
+    <key id="638" parent="182">
+      <ColNames>slug</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_news_category_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="639" parent="182">
       <ColNames>parent_id</ColNames>
       <RefTableName>news_category</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <check id="639" parent="182">
+    <check id="640" parent="182">
       <Predicate>&quot;level&quot; &gt;= 0</Predicate>
     </check>
-    <check id="640" parent="182">
+    <check id="641" parent="182">
       <Predicate>&quot;lft&quot; &gt;= 0</Predicate>
     </check>
-    <check id="641" parent="182">
+    <check id="642" parent="182">
       <Predicate>&quot;rght&quot; &gt;= 0</Predicate>
     </check>
-    <check id="642" parent="182">
+    <check id="643" parent="182">
       <Predicate>&quot;tree_id&quot; &gt;= 0</Predicate>
     </check>
-    <column id="643" parent="183" name="id">
+    <column id="644" parent="183" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="644" parent="183" name="subject">
+    <column id="645" parent="183" name="subject">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="645" parent="183" name="comment">
+    <column id="646" parent="183" name="comment">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="646" parent="183" name="status">
+    <column id="647" parent="183" name="status">
       <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="647" parent="183" name="ip">
+    <column id="648" parent="183" name="ip">
       <Position>5</Position>
       <DataType>varchar(16)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="648" parent="183" name="create_at">
+    <column id="649" parent="183" name="create_at">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="649" parent="183" name="update_at">
+    <column id="650" parent="183" name="update_at">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="650" parent="183" name="news_id">
+    <column id="651" parent="183" name="news_id">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="651" parent="183" name="user_id">
+    <column id="652" parent="183" name="user_id">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="652" parent="183" name="news_comment_news_id_18ce08a8">
+    <index id="653" parent="183" name="news_comment_news_id_18ce08a8">
       <ColNames>news_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="653" parent="183" name="news_comment_user_id_ed6ce0db">
+    <index id="654" parent="183" name="news_comment_user_id_ed6ce0db">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="654" parent="183">
+    <key id="655" parent="183">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="655" parent="183">
+    <foreign-key id="656" parent="183">
       <ColNames>news_id</ColNames>
       <RefTableName>news_news</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <foreign-key id="656" parent="183">
+    <foreign-key id="657" parent="183">
       <ColNames>user_id</ColNames>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <column id="657" parent="184" name="id">
+    <column id="658" parent="184" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="658" parent="184" name="image">
+    <column id="659" parent="184" name="image">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="659" parent="184" name="news_id">
+    <column id="660" parent="184" name="news_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="660" parent="184" name="title">
+    <column id="661" parent="184" name="title">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="661" parent="184" name="news_images_news_id_5bc42a8a">
+    <index id="662" parent="184" name="news_images_news_id_5bc42a8a">
       <ColNames>news_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="662" parent="184">
+    <key id="663" parent="184">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="663" parent="184">
+    <foreign-key id="664" parent="184">
       <ColNames>news_id</ColNames>
       <RefTableName>news_news</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <column id="664" parent="185" name="id">
+    <column id="665" parent="185" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="665" parent="185" name="title">
+    <column id="666" parent="185" name="title">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="666" parent="185" name="keywords">
+    <column id="667" parent="185" name="keywords">
       <Position>3</Position>
       <DataType>varchar(70)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="667" parent="185" name="image">
+    <column id="668" parent="185" name="image">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="668" parent="185" name="status">
+    <column id="669" parent="185" name="status">
       <Position>5</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="669" parent="185" name="detail">
+    <column id="670" parent="185" name="detail">
       <Position>6</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="670" parent="185" name="create_at">
+    <column id="671" parent="185" name="create_at">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="671" parent="185" name="update_at">
+    <column id="672" parent="185" name="update_at">
       <Position>8</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="672" parent="185" name="category_id">
+    <column id="673" parent="185" name="category_id">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="673" parent="185" name="slug">
+    <column id="674" parent="185" name="slug">
       <Position>10</Position>
-      <DataType>varchar(100)|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="674" parent="185" name="news_news_category_id_f060a768">
+    <index id="675" parent="185" name="sqlite_autoindex_news_news_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>slug</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="676" parent="185" name="news_news_category_id_f060a768">
       <ColNames>category_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="675" parent="185">
+    <key id="677" parent="185">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="676" parent="185">
+    <key id="678" parent="185">
+      <ColNames>slug</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_news_news_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="679" parent="185">
       <ColNames>category_id</ColNames>
       <RefTableName>news_category</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <column id="677" parent="186" name="type">
+    <column id="680" parent="186" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="678" parent="186" name="name">
+    <column id="681" parent="186" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="679" parent="186" name="tbl_name">
+    <column id="682" parent="186" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="680" parent="186" name="rootpage">
+    <column id="683" parent="186" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="681" parent="186" name="sql">
+    <column id="684" parent="186" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="682" parent="187" name="name">
+    <column id="685" parent="187" name="name">
       <Position>1</Position>
     </column>
-    <column id="683" parent="187" name="seq">
+    <column id="686" parent="187" name="seq">
       <Position>2</Position>
     </column>
   </database-model>
