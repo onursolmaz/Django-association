@@ -1,10 +1,11 @@
 import json
 
+from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from home.forms import SearchForm
+from home.forms import SearchForm, singUpForm
 from home.models import Setting, ContactFormMessage, ContactForm
 from django.contrib import messages
 
@@ -48,7 +49,7 @@ def contact(request):
     return render(request, "contact.html", context)
 
 
-def category_news(request, id,slug):
+def category_news(request, id, slug):
     category = Category.objects.all()
     categoryData = Category.objects.get(pk=id)
     news = News.objects.filter(category_id=id)
@@ -83,3 +84,46 @@ def news_search_auto(request):
         data = "fail"
     mimetype = "application/json"
     return HttpResponse(data, mimetype)
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect("/")
+        else:
+            messages.warning(request, "Username or Password incorrect !!!")
+            return HttpResponseRedirect("/login")
+
+    category = Category.objects.all()
+    context = {"category": category}
+
+    return render(request, "login.html", context)
+
+
+def register_view(request):
+    if request.method == "POST":
+        form = singUpForm(request.POST)
+        if form.is_valid():
+            form = singUpForm()
+            form.username = form.cleaned_data["username"]
+            form.email = form.cleaned_data["email"]
+            form.first_name = form.cleaned_data["first_name"]
+            form.last_name = form.cleaned_data["last_name"]
+            form.password1 = form.cleaned_data["password1"]
+            form.save()
+            user = authenticate(username=form.username, password=form.password1)
+            login(request, user)
+            return HttpResponseRedirect("/")
+    form = singUpForm()
+    category = Category.objects.all()
+    context = {"category": category, "form": form}
+    return render(request, "register.html", context)

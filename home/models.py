@@ -1,4 +1,5 @@
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import Textarea, TextInput, NumberInput, ModelForm
 
@@ -39,7 +40,7 @@ class ContactFormMessage(models.Model):
     ip = models.CharField(blank=True, max_length=20)
     message = models.CharField(max_length=255)
     answer = models.CharField(blank=True, max_length=255)
-    status = models.CharField(max_length=10, choices=STATUS,default="New")
+    status = models.CharField(max_length=10, choices=STATUS, default="New")
     create_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now=True)
 
@@ -57,3 +58,5 @@ class ContactForm(ModelForm):
             "phone": NumberInput(attrs={"class": "input", "placeholder": "Your phone"}),
             "message": Textarea(attrs={"class": "input", "placeholder": "Please enter Name Surname"})
         }
+
+
