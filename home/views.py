@@ -110,19 +110,22 @@ def login_view(request):
 
 
 def register_view(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = singUpForm(request.POST)
         if form.is_valid():
-            form = singUpForm()
-            form.username = form.cleaned_data["username"]
-            form.email = form.cleaned_data["email"]
-            form.first_name = form.cleaned_data["first_name"]
-            form.last_name = form.cleaned_data["last_name"]
-            form.password1 = form.cleaned_data["password1"]
+            form.username = request.POST["username"]
+            form.email = request.POST["email"]
+            form.first_name = request.POST["first_name"]
+            form.last_name = request.POST["last_name"]
+            form.password1 = request.POST["password1"]
+            form.password2 = request.POST["password2"]
             form.save()
-            user = authenticate(username=form.username, password=form.password1)
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password1")
+            user = authenticate(username=username, password=password)
             login(request, user)
             return HttpResponseRedirect("/")
+
     form = singUpForm()
     category = Category.objects.all()
     context = {"category": category, "form": form}

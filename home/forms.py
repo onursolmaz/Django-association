@@ -9,7 +9,7 @@ class SearchForm(forms.Form):
 
 class singUpForm(UserCreationForm):
     username: forms.CharField(max_length=30, label="Username:")
-    email = forms.EmailField(max_length=100, label="E mail:")
+    email = forms.EmailField(max_length=100, label="E mail :")
     first_name: forms.CharField(max_length=50, help_text="First name", label="First name:")
     last_name: forms.CharField(max_length=50, help_text="Last name", label="Last name:")
 
