@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.forms import SearchForm, singUpForm
-from home.models import Setting, ContactFormMessage, ContactForm
+from home.models import Setting, ContactFormMessage, ContactForm, UserProfile
 from django.contrib import messages
 
 from news.models import News, Category
@@ -130,3 +130,11 @@ def register_view(request):
     category = Category.objects.all()
     context = {"category": category, "form": form}
     return render(request, "register.html", context)
+
+
+def userProfile(request):
+    category = Category.objects.all()
+    user = request.user
+    profile = UserProfile.objects.get(pk=user.id)
+    context = {"category": category,"profile":profile}
+    return render(request, "user_profile.html", context)

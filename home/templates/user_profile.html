@@ -1,0 +1,33 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{ profile.user.username }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block head %}
+    <link rel="shortcut icon" type="image/ico" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block content %}
+    <div style="margin: 100px">
+
+        <div class="row">
+            <div class="col">
+                <div>
+                    <h5 class="card-title h5 text-center"><i class="far fa-user mr-1"></i>USER PANEL</h5>
+                    <hr>
+                    <div class="text-center">
+                        <p style="font-size: 35px" class="text-center font-weight-bold text-uppercase ">{{ user.first_name}}  {{ user.last_name}}</p>
+                    <img class="inline mr-4 rounded-circle" src="{{ profile.image.url }}" width="155px" height="155px"></div>
+                </div>
+                <div class="list-group text-center">
+                    <a href="" class="list-group-item text-primary"><i class="fas fa-blog"></i>
+                        MY BLOGS</a>
+                    <a href="" class="list-group-item text-primary"><i
+                            class="far fa-comments"></i> MY COMMENTS</a>
+                    {#if şartları ile admin panel göster#}
+                    <a href="" class="list-group-item text-primary"><i
+                            class="fas fa-user-cog"></i> ADMİN PANEL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
