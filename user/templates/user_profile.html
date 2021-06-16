@@ -1,0 +1,43 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{ profile.user.username }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block head %}
+    <link rel="shortcut icon" type="image/ico" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block content %}
+    <div style="margin: 100px">
+
+        <div class="row">
+
+            {% include "user_panel.html" %}
+
+            <div class="col-md-9">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} w-50 text-center" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="text-center">
+
+                    <div class="card" style="width: 18rem; border: 0px; margin-left: 120px">
+                        <img src="{{ profile.image.url }}" class="img-thumbnail rounded-circle m-auto" width="160px"
+                             height="160px">
+                        <div class="card-body">
+                            <h5 class="card-title">@{{ user.username }}</h5>
+                            <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+                            <a href="/user/update" class="btn btn-success mb-2">UPDDATE PROFİLE</a>
+                            <a href="/user/password" class="btn btn-success mb-2">CHANGE PASSWORD</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

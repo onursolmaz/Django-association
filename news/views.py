@@ -12,18 +12,17 @@ def index(request):
     return HttpResponse("News page")
 
 
-def news(request, id,slug):
+def news(request, id, slug):
     category = Category.objects.all()
     news = News.objects.get(pk=id)
     images = Images.objects.filter(news_id=id)
-    comments=Comment.objects.filter(news_id=id,status="True")
-    context = {"news": news, "category": category, "images": images,"comments":comments}
+    comments = Comment.objects.filter(news_id=id, status="True")
+    context = {"news": news, "category": category, "images": images, "comments": comments}
     return render(request, "news_detail.html", context)
 
 
 @login_required(login_url="/login")
 def addcomment(request, id):
-
     url = request.META.get("HTTP_REFERER")
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -42,3 +41,10 @@ def addcomment(request, id):
 
     messages.error(request, "Comment can not sent")
     return HttpResponse(url)
+
+
+def delete_comment(request, id):
+    news = News.objects.get(pk=id)
+    news.delete()
+    messages.success(request, "news has been deleted")
+    return HttpResponseRedirect("/user/mynews")

@@ -48,6 +48,7 @@ class News(models.Model):
     )
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE)  # relation with Category
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=70)
     image = models.ImageField(blank=True, upload_to="images/")

@@ -34,10 +34,10 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown d-inline-flex">
                 {% if user.id is not None %}
-                    <img src="{{ user.profile.img.url }}" style="width: 36px;height: 36px;border-radius: 50%;">
+                    <img src="{{ user.userprofile.image.url }}" style="width: 36px;height: 36px;border-radius: 50%;">
                     <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{ user.first_name }} {{ user.last_name }}</a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="/myprofile"><i
+                    <li><a class="dropdown-item" href="/user/profile"><i
                                 class="far fa-user-circle mr-1"></i>My account</a></li>
                     <li><a class="dropdown-item" href="/logout"><i
                                 class="fas fa-sign-out-alt mr-1"></i>Logout</a></li>

@@ -25,7 +25,7 @@ def aboutus(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     context = {"setting": setting, "category": category}
-    return render(request, "news.html", context)
+    return render(request, "aboutus.html", context)
 
 
 def contact(request):
@@ -124,17 +124,13 @@ def register_view(request):
             password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=password)
             login(request, user)
+            data = UserProfile()
+            data.user_id = user.id
+            data.image = "images/users/user.png"
+            data.save()
             return HttpResponseRedirect("/")
 
     form = singUpForm()
     category = Category.objects.all()
     context = {"category": category, "form": form}
     return render(request, "register.html", context)
-
-
-def userProfile(request):
-    category = Category.objects.all()
-    user = request.user
-    profile = UserProfile.objects.get(pk=user.id)
-    context = {"category": category,"profile":profile}
-    return render(request, "user_profile.html", context)
