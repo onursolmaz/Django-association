@@ -1,9 +1,10 @@
+from ckeditor.widgets import CKEditorWidget
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput, FileInput, Select
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from mptt.models import MPTTModel
@@ -68,6 +69,21 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse("news_detail", kwargs={"slug": self.slug})
+
+
+#
+class NewsForm(ModelForm):
+    class Meta:
+        model = News
+        fields = ["category", "title", "slug", "keywords", "detail", "image", ]
+        widgets = {
+            # "Category": Select(attrs={"class": "input form-control"}),
+            "title": TextInput(attrs={"class": "input form-control", "placeholder": "title"}),
+            "slug": TextInput(attrs={"class": "input form-control", "placeholder": "slug"}),
+            "keywords": TextInput(attrs={"class": "input form-control", "placeholder": "keywords"}),
+            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image"}),
+            "detail": CKEditorWidget(),
+        }
 
 
 class Comment(models.Model):

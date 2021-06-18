@@ -1,0 +1,62 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{ profile.user.username }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block head %}
+    <link rel="shortcut icon" type="image/ico" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block content %}
+    <div style="margin: 100px">
+
+        <div class="row">
+
+            {% include "user_panel.html" %}
+
+            <div class="col-md-9">
+                <div class="text-center">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} w-50 text-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}</div>
+
+                <div class="text-center">
+
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">News Tittle</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                       {% for comment in comments %}
+                        <tr>
+                            <td>{{comment.id}}</td>
+                            <td class="text-primary"><a
+                                    href="/news/{{comment.news.id}}/{{ comment.news.slug }}">
+                                {{comment.news.title}}</a>
+                            </td>
+                            <td>{{comment.status}}</td>
+                            </td>
+                            <td>
+                                <a href="/news/delete_comment/{{ comment.id }}"
+                                   onclick=" return confirm('are you sure!')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

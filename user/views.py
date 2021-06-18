@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from home.models import UserProfile
-from news.models import Category, News
+from news.models import Category, News, Comment
 from django.contrib import messages
 
 from user.forms import UserUpdateForm, ProfileUpdateForm
@@ -67,3 +67,11 @@ def my_news(request):
     news = News.objects.filter(user_id=user.id)
     context = {"category": category, "news": news}
     return render(request, "user_news.html", context)
+
+
+def my_comments(request):
+    category = Category.objects.all()
+    user = request.user
+    comments = Comment.objects.filter(user_id=user.id)
+    context = {"category": category, "comments": comments}
+    return render(request, "user_comments.html", context)

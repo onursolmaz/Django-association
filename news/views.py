@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from home.views import category_news
-from news.models import Category, News, Images, CommentForm, Comment
+from news.models import Category, News, Images, CommentForm, Comment, NewsForm
 
 
 def index(request):
@@ -43,8 +43,42 @@ def addcomment(request, id):
     return HttpResponse(url)
 
 
-def delete_comment(request, id):
+@login_required(login_url="/login")
+def delete_news(request, id):
     news = News.objects.get(pk=id)
     news.delete()
     messages.success(request, "news has been deleted")
     return HttpResponseRedirect("/user/mynews")
+
+
+@login_required(login_url="/login")
+def delete_comment(request, id):
+    comment = Comment.objects.get(pk=id)
+    comment.delete()
+    messages.success(request, "comment has been deleted")
+    return HttpResponseRedirect("/user/mycomments")
+
+
+@login_required(login_url="/login")
+def add_news(request):
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            current_user = request.user
+
+            data = Comment()
+            data.user_id = current_user.id
+            data.news_id = id
+            data.comment = form.cleaned_data["comment"]
+            data.ip = request.META.get("REMOTE_ADDR")
+            data.save()
+            messages.success(request, "News has been added")
+            return HttpResponseRedirect("/user/mynews")
+        else:
+            messages.success(request, "News form eroor:" + str(form.errors))
+
+    else:
+        category = Category.objects.all()
+        form = NewsForm()
+        context = {"form": form, "category": category}
+        return render(request, "user_addNews.html", context)

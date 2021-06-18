@@ -1,0 +1,46 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{ profile.user.username }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block head %}
+    <link rel="shortcut icon" type="image/ico" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block content %}
+    <div style="margin: 100px">
+
+        <div class="row">
+
+            {% include "user_panel.html" %}
+
+            <div class="col-md-9">
+                <div class="text-center">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} w-50 text-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}</div>
+
+                <div class="text-center">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ form.media }}
+                            {{ form.as_p }}
+
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn-primary" type="submit">Save</button>
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
