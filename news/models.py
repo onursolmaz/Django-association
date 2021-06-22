@@ -77,11 +77,11 @@ class NewsForm(ModelForm):
         model = News
         fields = ["category", "title", "slug", "keywords", "detail", "image", ]
         widgets = {
-            # "Category": Select(attrs={"class": "input form-control"}),
+            "category": Select(attrs={"class": "input form-control","name":"filter_by"}),
             "title": TextInput(attrs={"class": "input form-control", "placeholder": "title"}),
             "slug": TextInput(attrs={"class": "input form-control", "placeholder": "slug"}),
             "keywords": TextInput(attrs={"class": "input form-control", "placeholder": "keywords"}),
-            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image"}),
+            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image",}),
             "detail": CKEditorWidget(),
         }
 

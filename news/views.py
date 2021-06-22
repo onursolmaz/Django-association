@@ -62,21 +62,44 @@ def delete_comment(request, id):
 @login_required(login_url="/login")
 def add_news(request):
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
-
-            data = Comment()
-            data.user_id = current_user.id
-            data.news_id = id
-            data.comment = form.cleaned_data["comment"]
-            data.ip = request.META.get("REMOTE_ADDR")
-            data.save()
+            news = News()
+            news.title = form.cleaned_data["title"]
+            news.category = form.cleaned_data['category']
+            news.slug = form.cleaned_data["slug"]
+            news.detail = form.cleaned_data["detail"]
+            news.user_id = current_user.id
+            news.image = form.cleaned_data["image"]
+            news.keywords = form.cleaned_data["keywords"]
+            news.save()
             messages.success(request, "News has been added")
             return HttpResponseRedirect("/user/mynews")
         else:
-            messages.success(request, "News form eroor:" + str(form.errors))
+            messages.success(request, "News form error:" + str(form.errors))
 
+    else:
+        category = Category.objects.all()
+        form = NewsForm()
+        context = {"form": form, "category": category}
+        return render(request, "user_addNews.html", context)
+
+
+def add_newsTest(request):
+    if request.method == "POST":
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("form verisi:")
+            category = form.cleaned_data['category']
+            print(category)
+            print("verinin type**********************************************:")
+            print(type(category))
+
+            exit()
+        else:
+            print(str(form.errors))
+            exit()
     else:
         category = Category.objects.all()
         form = NewsForm()
