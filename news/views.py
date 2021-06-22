@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from home.models import Setting
 from home.views import category_news
 from news.models import Category, News, Images, CommentForm, Comment, NewsForm
 
@@ -14,10 +15,11 @@ def index(request):
 
 def news(request, id, slug):
     category = Category.objects.all()
+    setting = Setting.objects.get(pk=1)
     news = News.objects.get(pk=id)
     images = Images.objects.filter(news_id=id)
     comments = Comment.objects.filter(news_id=id, status="True")
-    context = {"news": news, "category": category, "images": images, "comments": comments}
+    context = {"news": news, "category": category, "images": images, "comments": comments,"setting":setting}
     return render(request, "news_detail.html", context)
 
 
@@ -73,35 +75,37 @@ def add_news(request):
             news.user_id = current_user.id
             news.image = form.cleaned_data["image"]
             news.keywords = form.cleaned_data["keywords"]
+            news.status = "False"
             news.save()
-            messages.success(request, "News has been added")
+            messages.warning(request, "News has been added")
             return HttpResponseRedirect("/user/mynews")
         else:
             messages.success(request, "News form error:" + str(form.errors))
+            return HttpResponseRedirect("/news/add_news")
 
     else:
         category = Category.objects.all()
         form = NewsForm()
-        context = {"form": form, "category": category}
+        setting = Setting.objects.get(pk=1)
+        context = {"form": form, "category": category,"setting":setting}
         return render(request, "user_addNews.html", context)
 
 
-def add_newsTest(request):
+def edit_news(request,id):
+    news=News.objects.get(id=id)
     if request.method == "POST":
-        form = NewsForm(request.POST, request.FILES)
+        form = NewsForm(request.POST, request.FILES,instance=news)
         if form.is_valid():
-            print("form verisi:")
-            category = form.cleaned_data['category']
-            print(category)
-            print("verinin type**********************************************:")
-            print(type(category))
-
-            exit()
+            form.save()
+            messages.success(request, "News has been uptated")
+            return HttpResponseRedirect("/user/mynews")
         else:
-            print(str(form.errors))
-            exit()
+            messages.warning(request, "News form error:" + str(form.errors))
+            return HttpResponseRedirect("/news/edit_news/"+str(id))
     else:
         category = Category.objects.all()
-        form = NewsForm()
-        context = {"form": form, "category": category}
+        form = NewsForm(instance=news)
+        setting = Setting.objects.get(pk=1)
+        context = {"form": form, "category": category,"setting":setting}
         return render(request, "user_addNews.html", context)
+

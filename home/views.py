@@ -16,7 +16,7 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderData = News.objects.all()[:4]
     category = Category.objects.all()
-    news = News.objects.all()
+    news = News.objects.filter(status="True").order_by("-id")[:7]
     context = {"setting": setting, "sliderData": sliderData, "category": category, "news": news}
     return render(request, "index.html", context)
 
@@ -53,7 +53,8 @@ def category_news(request, id, slug):
     category = Category.objects.all()
     categoryData = Category.objects.get(pk=id)
     news = News.objects.filter(category_id=id)
-    context = {"news": news, "category": category, "categoryData": categoryData}
+    setting = Setting.objects.get(pk=1)
+    context = {"news": news, "category": category, "categoryData": categoryData, "setting": setting}
     return render(request, "news.html", context)
 
 
@@ -102,9 +103,9 @@ def login_view(request):
         else:
             messages.warning(request, "Username or Password incorrect !!!")
             return HttpResponseRedirect("/login")
-
+    setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {"category": category}
+    context = {"category": category, "setting": setting}
 
     return render(request, "login.html", context)
 
@@ -132,5 +133,6 @@ def register_view(request):
 
     form = singUpForm()
     category = Category.objects.all()
-    context = {"category": category, "form": form}
+    setting = Setting.objects.get(pk=1)
+    context = {"category": category, "form": form, "setting": setting}
     return render(request, "register.html", context)

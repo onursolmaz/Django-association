@@ -12,22 +12,18 @@
         <div class="row">
 
             {% include "user_panel.html" %}
-
             <div class="col-md-9">
-                <div class="text-center">
+
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }} w-50 text-center" role="alert">
-                                {{ message }}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message |safe }}
                             </div>
                         {% endfor %}
-                    {% endif %}</div>
-
-                <div class="text-center">
+                    {% endif %}
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <fieldset class="form-group">
-
                             {{ form.media }}<br>
                             {{ form.as_p }}
                         </fieldset>
@@ -37,10 +33,8 @@
                         </div>
 
 
-
                     </form>
 
-                </div>
             </div>
         </div>
     </div>

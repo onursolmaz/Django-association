@@ -11,6 +11,6 @@ urlpatterns = [
     path("delete/<int:id>", views.delete_news, name="delete_news"),
     path("delete_comment/<int:id>", views.delete_comment, name="delete_comment"),
     path("add_news", views.add_news, name="add_news"),
-    # path("edit_news/<int:id>", views.edit_news, name="edit_news"),
+    path("edit_news/<int:id>", views.edit_news, name="edit_news"),
 
 ]

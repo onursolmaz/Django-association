@@ -52,7 +52,7 @@ class News(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=70)
-    image = models.ImageField(blank=True, upload_to="images/")
+    image = models.ImageField(blank=True, upload_to="images/", null=True)
     status = models.CharField(max_length=10, choices=STATUS)
     slug = models.SlugField(null=False, unique=True)
     detail = RichTextUploadingField()
@@ -75,13 +75,13 @@ class News(models.Model):
 class NewsForm(ModelForm):
     class Meta:
         model = News
-        fields = ["category", "title", "slug", "keywords", "detail", "image", ]
+        fields = ["category", "title", "slug", "keywords", "image", "detail", ]
         widgets = {
-            "category": Select(attrs={"class": "input form-control","name":"filter_by"}),
+            "category": Select(attrs={"class": "input form-control", "name": "filter_by"}),
             "title": TextInput(attrs={"class": "input form-control", "placeholder": "title"}),
             "slug": TextInput(attrs={"class": "input form-control", "placeholder": "slug"}),
-            "keywords": TextInput(attrs={"class": "input form-control", "placeholder": "keywords"}),
-            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image",}),
+            "keywords": TextInput(attrs={"class": "input form-control", "placeholder": "keywords",}),
+            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image", "required":"on",}),
             "detail": CKEditorWidget(),
         }
 
