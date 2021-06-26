@@ -136,3 +136,9 @@ def register_view(request):
     setting = Setting.objects.get(pk=1)
     context = {"category": category, "form": form, "setting": setting}
     return render(request, "register.html", context)
+
+
+class Item:
+    @property
+    def results(self):
+        return 10

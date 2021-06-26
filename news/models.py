@@ -71,6 +71,10 @@ class News(models.Model):
         return reverse("news_detail", kwargs={"slug": self.slug})
 
 
+    def commentCount(self):
+        return Comment.objects.filter(news_id=self.id,status="True").count()
+
+
 #
 class NewsForm(ModelForm):
     class Meta:

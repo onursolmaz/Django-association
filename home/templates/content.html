@@ -1,3 +1,4 @@
+
 <main>
     <div class="container mt-3">
         <h1 class="display-4 text-center mb-4">
@@ -15,7 +16,7 @@
                             <p class="card-text">{{ rs.keywords }}</p>
                             <a href="/news/{{ rs.id }}/{{ rs.slug }}" type="button" class="btn btn-primary">Read
                                 More</a>
-                            <div class="d-inline float-right"><i class="far fa-comments"></i>0</div>
+                            <div class="d-inline float-right"><i class="far fa-comments"></i>{{ rs.commentCount }}</div>
                         </div>
                         <div class="card-footer text-muted">
                             <i class="far fa-calendar-alt"></i> {{ rs.create_at }}
