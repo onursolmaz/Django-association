@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.forms import SearchForm, singUpForm
-from home.models import Setting, ContactFormMessage, ContactForm, UserProfile
+from home.models import Setting, ContactFormMessage, ContactForm, UserProfile, FAQ
 from django.contrib import messages
 
 from news.models import News, Category
@@ -55,7 +55,7 @@ def category_news(request, id, slug):
     news = News.objects.filter(category_id=id)
     setting = Setting.objects.get(pk=1)
     context = {"news": news, "category": category, "categoryData": categoryData, "setting": setting}
-    return render(request, "news.html", context)
+    return render(request, "news_search.html", context)
 
 
 def news_search(request):
@@ -138,7 +138,9 @@ def register_view(request):
     return render(request, "register.html", context)
 
 
-class Item:
-    @property
-    def results(self):
-        return 10
+def fag(request):
+    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1)
+    fags = FAQ.objects.all().order_by("orderNumber")
+    context = {"category": category, "setting": setting, "fags": fags}
+    return render(request, "fag.html", context)

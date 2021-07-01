@@ -81,3 +81,19 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ["image"]
+
+
+class FAQ(models.Model):
+    STATUS = (
+        ("True", "Evet"),
+        ("False", "Hayır"),
+    )
+    orderNumber=models.IntegerField()
+    question = models.CharField(max_length=150)
+    answer = models.TextField(max_length=255)
+    status = models.CharField(max_length=10, choices=STATUS, default="New")
+    create_at = models.DateField(auto_now_add=True)
+    update_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.question

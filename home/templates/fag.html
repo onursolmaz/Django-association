@@ -1,0 +1,81 @@
+{% extends "homebase.html" %}
+{% block title %}Sıkça Sorulan Sorular {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" type="image/ico" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block content %}
+
+    <style>
+        h2 {
+            font-family: Arial, Verdana;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: #091f2f;
+            text-transform: uppercase;
+            margin-top: 105px;
+        }
+
+        .accordion-section .panel-default > .panel-heading {
+            border: 0;
+            background: #f4f4f4;
+            padding: 0;
+        }
+
+        .accordion-section .panel-default .panel-title a {
+            display: block;
+            font-style: italic;
+            font-size: 1.5rem;
+        }
+
+        .accordion-section .panel-default .panel-title a:after {
+            font-family: 'FontAwesome';
+            font-style: normal;
+            font-size: 3rem;
+            content: "\f106";
+            color: #1f7de2;
+            float: right;
+            margin-top: -12px;
+        }
+
+        .accordion-section .panel-default .panel-title a.collapsed:after {
+            content: "\f107";
+        }
+
+        .accordion-section .panel-default .panel-body {
+            font-size: 1.2rem;
+        }
+    </style>
+    <div style="margin-bottom:59px"></div>
+
+    <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
+        <div class="container">
+
+            <h2>Frequently Asked Questions </h2>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+
+                {% for fag in fags %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading p-3 mb-3" role="tab" id="heading{{ fag.orderNumber }}">
+                            <h3 class="panel-title">
+                                <a class="collapsed" role="button" title="" data-toggle="collapse"
+                                   data-parent="#accordion" href="#collapse{{ fag.orderNumber }}" aria-expanded="true"
+                                   aria-controls="collapse{{ fag.orderNumber }}">
+                                   {{ fag.orderNumber }}- {{ fag.question }}
+                                </a>
+                            </h3>
+                        </div>
+                        <div id="collapse{{ fag.orderNumber }}" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="heading0">
+                            <div class="panel-body px-3 mb-4">
+                                <p>{{ fag.answer }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

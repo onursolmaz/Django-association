@@ -7,5 +7,6 @@ urlpatterns = [
     path("aboutus", views.aboutus, name="abouts"),
     path("contact", views.contact, name="contact"),
     path("<int:id>/<slug:slug>", views.category_news, name="category_news"),
+    path("fag", views.fag, name="fag"),
 
 ]
