@@ -70,9 +70,8 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse("news_detail", kwargs={"slug": self.slug})
 
-
     def commentCount(self):
-        return Comment.objects.filter(news_id=self.id,status="True").count()
+        return Comment.objects.filter(news_id=self.id, status="True").count()
 
 
 #
@@ -84,8 +83,8 @@ class NewsForm(ModelForm):
             "category": Select(attrs={"class": "input form-control", "name": "filter_by"}),
             "title": TextInput(attrs={"class": "input form-control", "placeholder": "title"}),
             "slug": TextInput(attrs={"class": "input form-control", "placeholder": "slug"}),
-            "keywords": TextInput(attrs={"class": "input form-control", "placeholder": "keywords",}),
-            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image", "required":"on",}),
+            "keywords": TextInput(attrs={"class": "input form-control", "placeholder": "keywords", }),
+            "image": FileInput(attrs={"class": "input form-control", "placeholder": "image", "required": "on", }),
             "detail": CKEditorWidget(),
         }
 
@@ -124,3 +123,14 @@ class Images(models.Model):
 
     def __str__(self):
         return self.title
+
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="50"/>').format(self.image.url)
+
+    image_tag_short_description = "Image"
+
+
+class newsImageForm(ModelForm):
+    class Meta:
+        model = Images
+        fields = ["title", "image"]

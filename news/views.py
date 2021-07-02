@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from home.models import Setting
 from home.views import category_news
-from news.models import Category, News, Images, CommentForm, Comment, NewsForm
+from news.models import Category, News, Images, CommentForm, Comment, NewsForm, newsImageForm
 
 
 def index(request):
@@ -19,7 +19,7 @@ def news(request, id, slug):
     news = News.objects.get(pk=id)
     images = Images.objects.filter(news_id=id)
     comments = Comment.objects.filter(news_id=id, status="True")
-    context = {"news": news, "category": category, "images": images, "comments": comments,"setting":setting}
+    context = {"news": news, "category": category, "images": images, "comments": comments, "setting": setting}
     return render(request, "news_detail.html", context)
 
 
@@ -87,25 +87,51 @@ def add_news(request):
         category = Category.objects.all()
         form = NewsForm()
         setting = Setting.objects.get(pk=1)
-        context = {"form": form, "category": category,"setting":setting}
+        context = {"form": form, "category": category, "setting": setting}
         return render(request, "user_addNews.html", context)
 
 
-def edit_news(request,id):
-    news=News.objects.get(id=id)
+def edit_news(request, id):
+    news = News.objects.get(id=id)
     if request.method == "POST":
-        form = NewsForm(request.POST, request.FILES,instance=news)
+        form = NewsForm(request.POST, request.FILES, instance=news)
         if form.is_valid():
             form.save()
             messages.success(request, "News has been uptated")
             return HttpResponseRedirect("/user/mynews")
         else:
             messages.warning(request, "News form error:" + str(form.errors))
-            return HttpResponseRedirect("/news/edit_news/"+str(id))
+            return HttpResponseRedirect("/news/edit_news/" + str(id))
     else:
         category = Category.objects.all()
         form = NewsForm(instance=news)
         setting = Setting.objects.get(pk=1)
-        context = {"form": form, "category": category,"setting":setting}
+        context = {"form": form, "category": category, "setting": setting}
         return render(request, "user_addNews.html", context)
 
+
+def newsaddimage(request, id):
+    if request.method == 'POST':
+        lasturl = request.META.get("HTTP_REFERER")
+        form = newsImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = Images()
+            data.title = form.cleaned_data["title"]
+            data.image = form.cleaned_data["image"]
+            data.news_id = id
+            data.save()
+            messages.success(request, "images has been uploaded successfully")
+            return HttpResponseRedirect("news"+lasturl)
+        else:
+            messages.warning(request, "Form Error:" + str(form.errors))
+            return HttpResponseRedirect(lasturl)
+    else:
+        news = News.objects.get(id=id)
+        images = []
+        try:
+            images = Images.objects.filter(news_id=id)
+        except:
+            pass
+        form = newsImageForm()
+        context = {"form": form, "images": images, "news": news}
+        return render(request, "news_imageGalery.html", context)

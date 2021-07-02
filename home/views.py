@@ -14,7 +14,7 @@ from news.models import News, Category
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderData = News.objects.all()[:4]
+    sliderData = News.objects.all()[:3]
     category = Category.objects.all()
     news = News.objects.filter(status="True").order_by("-id")[:7]
     context = {"setting": setting, "sliderData": sliderData, "category": category, "news": news}

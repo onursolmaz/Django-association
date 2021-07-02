@@ -7,6 +7,8 @@
     <div class="list-group">
         <a href="/user/mynews" class="list-group-item text-primary"><i class="fas fa-blog"></i> MY NEWS</a>
         <a href="/user/mycomments" class="list-group-item text-primary"><i class="far fa-comments"></i> MY COMMENTS</a>
-        <a href="/admin" class="list-group-item text-primary"><i class="fas fa-user-cog"></i> ADMİN PANEL</a>
+        {% if user.is_superuser %}
+            <a href="/admin" class="list-group-item text-primary"><i class="fas fa-user-cog"></i> ADMİN PANEL</a>
+        {% endif %}
     </div>
 </div>

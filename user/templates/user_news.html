@@ -31,6 +31,7 @@
                         <th>Category</th>
                         <th>Title</th>
                         <th>image</th>
+                        <th>Image Gallery</th>
                         <th>Status</th>
                         <th colspan="2"><i class="icon_cogs"></i> Action</th>
                     </tr>
@@ -47,6 +48,9 @@
                                 {% if new.image is not None %}
                                     <img src="{{ new.image.url }}" height="55" width="55">
                                 {% endif %}
+                            </td>
+                            <td>
+                                <a href="javascript:;" onclick="window.open('/news/newsaddimage/{{ new.id }}','gallery','height=600 width=800, top=50,left=150')">Galery</a>
                             </td>
                             <td>{{ new.status }}</td>
                             <td><a href="/news/delete/{{ new.id }}"

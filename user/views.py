@@ -70,7 +70,7 @@ def my_news(request):
     user = request.user
     news = News.objects.filter(user_id=user.id)
     setting = Setting.objects.get(pk=1)
-    context = {"category": category, "news": news, "setting": setting}
+    context = {"category": category, "news": news, "setting": setting,"user":user}
     return render(request, "user_news.html", context)
 
 
@@ -81,3 +81,5 @@ def my_comments(request):
     setting = Setting.objects.get(pk=1)
     context = {"category": category, "comments": comments, "setting": setting}
     return render(request, "user_comments.html", context)
+
+
